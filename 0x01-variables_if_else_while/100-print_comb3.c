@@ -31,7 +31,7 @@ int main(void)
 
 			putchar(left + '0');
 			putchar(right + '0');
-			
+
 			if (left == 8 && right == 9)
 				continue;
 

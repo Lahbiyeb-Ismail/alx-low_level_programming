@@ -1,4 +1,3 @@
-#include <ctype.h>
 #include "main.h"
 
 /**
@@ -18,7 +17,7 @@
 int _isalpha(int c)
 {
 
-	if (isalpha(c) != 0)
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 	{
 		return (1);
 	};

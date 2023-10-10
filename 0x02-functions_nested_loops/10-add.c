@@ -3,8 +3,8 @@
 /**
  * add - Entry point
  *
- *  * @num_1: no parameter
- *  * @num_2: no parameter
+ *  * @num_1: integer
+ *  * @num_2: integer
  *
  * Description: Function that adds two integers and returns the result.
  *

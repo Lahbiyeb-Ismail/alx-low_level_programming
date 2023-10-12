@@ -1,11 +1,13 @@
 #include <stdio.h>
+
 /**
  * main - Entry point
  *
- * Descripition: '6-size.c' print size of var
+ * Description: '6-size.c' print size of var
  *
- * Return: Alwyas 0 (Success)
+ * Return:  0 (Success)
  */
+
 int main(void)
 {
 	char a;

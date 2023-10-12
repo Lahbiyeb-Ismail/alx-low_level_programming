@@ -16,16 +16,22 @@
 
 void more_numbers(void)
 {
-	int count, number;
+	int count = 0;
 
-	for (count = 0; count < 10; count++)
+	while (count < 10)
 	{
-		for (number = 0; number < 15; number++)
+		int number = 0;
+
+		while (number <= 14)
 		{
 			if (number >= 10)
-				_putchar(number / 10 + '0');
-			_putchar(number % 10 + '0');
+				_putchar((number / 10) + '0');
+
+			_putchar((number % 10) + '0');
+			number++;
 		}
+
+		count++;
 		_putchar('\n');
 	}
 }

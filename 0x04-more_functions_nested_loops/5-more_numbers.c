@@ -3,7 +3,7 @@
 /**
  * more_numbers - Entry point
  *
- *  * @void: no parameter
+ * @void: no parameter
  *
  * Description: Function that prints 10 times the numbers,
  * from 0 to 14, followed by a new line.
@@ -18,7 +18,7 @@ void more_numbers(void)
 {
 	int count = 0;
 
-	while (count <= 10)
+	for (; count <= 10; count++)
 	{
 		int number = 0;
 
@@ -30,11 +30,6 @@ void more_numbers(void)
 			_putchar((number % 10) + '0');
 			number++;
 		}
-
-		count++;
 		_putchar('\n');
 	}
-
-
-
 }

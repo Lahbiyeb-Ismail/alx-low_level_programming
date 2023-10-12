@@ -31,18 +31,18 @@ void print_number(int n)
 	{
 		_putchar(_abs + '0');
 	}
-	if ((n > 9 && n <= 99) || (n < -9 && n >= -99))
+	else if ((n > 9 && n <= 99) || (n < -9 && n >= -99))
 	{
 		_putchar(tens + '0');
 		_putchar(ones + '0');
 	}
-	if ((n > 99 && n <= 999) || (n < -99 && n >= -999))
+	else if ((n > 99 && n <= 999) || (n < -99 && n >= -999))
 	{
 		_putchar(hundreds + '0');
 		_putchar(tens + '0');
 		_putchar(ones + '0');
 	}
-	if ((n > 999 && n <= 9999) || (n < -999 && n >= -9999))
+	else if ((n > 999 && n <= 9999) || (n < -999 && n >= -9999))
 	{
 		_putchar(thousands + '0');
 		_putchar(hundreds + '0');

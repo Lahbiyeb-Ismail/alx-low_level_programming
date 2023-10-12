@@ -5,7 +5,7 @@
  *
  *  * @c: int parameter
  *
- * Description: Write a function that checks for lowercase character.
+ * Description: Write a function that checks for uppercase character.
  *
  * Prototype: int _isupper(int c);
  *

@@ -26,7 +26,6 @@ int main(void)
 		total -= my_rand;
 	}
 	printf("%c", total);
-	printf("\n");
 
 	return (0);
 }

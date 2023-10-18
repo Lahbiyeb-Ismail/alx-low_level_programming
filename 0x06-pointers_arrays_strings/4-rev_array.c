@@ -24,7 +24,7 @@ void reverse_array(int *a, int n)
 	int i = 0, tmp_val;
 	int last_idx = n - 1;
 
-	while (i <= n / 2)
+	while (i < n / 2)
 	{
 
 		tmp_val = a[i];

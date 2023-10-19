@@ -1,13 +1,5 @@
 #include <stdio.h>
 
-/**
- * main - Entry point
- *
- * Description: Function that prints an integer.
- *
- * Return: nothing
- */
-
 int main(void)
 {
 	int n;

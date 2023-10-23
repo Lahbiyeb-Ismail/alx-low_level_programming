@@ -29,13 +29,16 @@ char *_strstr(char *haystack, char *needle)
 	int i = 0, j;
 
 
-	for (; needle[i] != '\0'; i++)
+	for (; haystack[i] != '\0'; i++)
 	{
-		for (j = 0; haystack[j] != '\0'; j++)
+		for (j = 0; needle[j] != '\0'; j++)
 		{
-			if (needle[i] == haystack[j])
-				return (haystack + j);
+			if (needle[j] != haystack[i + j])
+				break;
 		}
+
+		if (needle[j] == '\0')
+			return (haystack + i);
 
 	}
 

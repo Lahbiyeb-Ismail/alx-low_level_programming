@@ -33,6 +33,6 @@ void print_diagsums(int *a, int size)
 		diagSum2 += a[i];
 
 
-	printf("%d, %d \n", diagSum1, diagSum2);
+	printf("%d, %d\n", diagSum1, diagSum2);
 }
 

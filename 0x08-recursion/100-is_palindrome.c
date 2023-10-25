@@ -1,7 +1,7 @@
 #include "main.h"
 
-int is_palindrome_recursion(char *s, int left, int right);
 int _strlen_recursion(char *s);
+int is_palindrome_recursion(char *s, int left, int right);
 
 /**
  * is_palindrome - Entry point
@@ -23,40 +23,9 @@ int _strlen_recursion(char *s);
 
 int is_palindrome(char *s)
 {
-	int len = _strlen_recursion(s) - 1;
+	int right = _strlen_recursion(s) - 1;
 
-	printf("len = %d\n", len);
-
-	return (is_palindrome_recursion(s, 0, len));
-}
-
-
-
-/**
- * is_palindrome_recursion - Entry point
- *
- *  * @s: string to check if is palindrome
- *  * @left: left side of the string
- *  * @right: right side of the string
- *
- * Description: Helper function that check if a string is palindrome
- *
- * Prototype: int is_palindrome_recursion(char *s, int left, int right);
- *
- *
- * Return: The length of a string.
- *
- */
-
-int is_palindrome_recursion(char *s, int left, int right)
-{
-	if (left >= right)
-		return (1);
-
-	if (s[left] != s[right])
-		return (0);
-
-	return (is_palindrome_recursion(s, left + 1, right - 1));
+	return (is_palindrome_recursion(s, 0, right));
 }
 
 /**
@@ -81,3 +50,33 @@ int _strlen_recursion(char *s)
 
 	return (1 + _strlen_recursion(s + 1));
 }
+
+/**
+ * is_palindrome_recursion - Entry point
+ *
+ *  * @s: string to check if is palindrome
+ *  * @left: left side of the string
+ *  * @right: right side of the string
+ *
+ * Description: Helper function that check if a string is palindrome
+ *
+ * Prototype: int is_palindrome_recursion(char *s, int left, int right);
+ *
+ *
+ * Return: The length of a string.
+ *
+ */
+
+int is_palindrome_recursion(char *s, int left, int right)
+{
+	if (left >= right)
+		return (1);
+
+	else if (s[left] != s[right])
+		return (0);
+
+	else
+		return (is_palindrome_recursion(s, left + 1, right - 1));
+}
+
+

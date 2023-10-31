@@ -39,14 +39,12 @@ char **strtow(char *str)
 
 	int strLen = str_len(str);
 	int wordsCount = word_count(str);
-	int totalChars = strLen - wordsCount + 1;
 	char **strArray;
 
 	if (str == NULL || wordsCount == 0 || strLen == 0)
 		return (NULL);
 
-	strArray = malloc((wordsCount + 1) * sizeof(char *)
-		+ totalChars * sizeof(char));
+	strArray = malloc((wordsCount + 1) * sizeof(char *));
 
 	if (strArray == NULL)
 		return (NULL);
@@ -129,11 +127,13 @@ int word_count(char *str)
 
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] != ' ' && !inWord)
+		if (str[i] != ' ')
 		{
-			inWord = 1;
-			wordCount++;
-
+			if (!inWord)
+			{
+				wordCount++;
+				inWord = 1;
+			}
 		}
 		else
 			inWord = 0;

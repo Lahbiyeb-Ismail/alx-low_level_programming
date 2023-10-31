@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+unsigned int str_len(char *str);
+
 /**
  * str_concat - Entry point
  *
@@ -32,7 +34,6 @@
  *
  */
 
-unsigned int str_len(char *str);
 
 char *str_concat(char *s1, char *s2)
 {
@@ -45,6 +46,7 @@ char *str_concat(char *s1, char *s2)
 
 	if (newStr == NULL)
 		return (NULL);
+
 
 	for (idx1 = 0; idx1 < s1Len; idx1++)
 		newStr[idx1] = s1[idx1];
@@ -72,6 +74,9 @@ char *str_concat(char *s1, char *s2)
 unsigned int str_len(char *str)
 {
 	unsigned int len = 0;
+
+	if (str == NULL)
+		return (0);
 
 	while (str[len] != '\0')
 		len++;

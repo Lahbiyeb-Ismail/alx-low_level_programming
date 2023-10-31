@@ -39,12 +39,14 @@ char **strtow(char *str)
 
 	int strLen = str_len(str);
 	int wordsCount = word_count(str);
+	int totalChars = strLen - wordsCount + 1;
 	char **strArray;
 
 	if (str == NULL || wordsCount == 0 || strLen == 0)
 		return (NULL);
 
-	strArray = malloc((wordsCount + 1) * sizeof(char *));
+	strArray = malloc((wordsCount + 1) * sizeof(char *)
+		+ totalChars * sizeof(char));
 
 	if (strArray == NULL)
 		return (NULL);

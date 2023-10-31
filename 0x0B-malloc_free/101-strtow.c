@@ -58,7 +58,7 @@ char **strtow(char *str)
 			{
 				int wordLen = i - wordStart;
 
-				strArray[wordIndex] = malloc((wordLen + 1) * sizeof(char));
+				strArray[wordIndex] = malloc((wordLen + 1));
 
 				if (strArray[wordIndex] == NULL)
 				{

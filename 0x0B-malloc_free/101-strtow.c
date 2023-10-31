@@ -50,7 +50,7 @@ char **strtow(char *str)
 		return (NULL);
 
 
-	for (i = 0; i < strLen; i++)
+	for (i = 0; i <= strLen; i++)
 	{
 		if (str[i] == ' ' || str[i] == '\0')
 		{
@@ -64,7 +64,7 @@ char **strtow(char *str)
 				{
 					int j;
 
-					for (j = 0; j < wordLen; j++)
+					for (j = 0; j <= wordLen; j++)
 					{
 						free(strArray[j]);
 					}

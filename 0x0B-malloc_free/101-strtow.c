@@ -64,7 +64,7 @@ char **strtow(char *str)
 				{
 					int j;
 
-					for (j = 0; j <= wordLen; j++)
+					for (j = 0; j < wordIndex; j++)
 					{
 						free(strArray[j]);
 					}

@@ -35,10 +35,16 @@ char *argstostr(int ac, char **av)
 	strLen = 0;
 
 	for (acIdx = 0; acIdx < ac; acIdx++)
+	{
 		for (avIdx = 0; av[acIdx][avIdx]; avIdx++)
 			strLen++;
 
-	str = malloc((strLen + 1) * sizeof(char));
+		strLen++;
+	}
+
+	strLen++;
+
+	str = malloc(strLen * sizeof(char));
 
 	if (str == NULL)
 		return (NULL);

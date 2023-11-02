@@ -47,17 +47,23 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	unsigned int i;
 	unsigned int size;
 
+
+	/*If new_size == old_size do not do anything and return ptr*/
 	if (new_size == old_size)
 		return (ptr);
 
-	if (!ptr)
-		return (malloc(new_size));
-
+	/**
+	 * If new_size is equal to zero, and ptr is not NULL, then the call is
+	 * equivalent to free(ptr). Return NULL
+	*/
 	if (new_size == 0 && ptr)
 	{
 		free(ptr);
 		return (NULL);
 	}
+
+	if (!ptr)
+		return (malloc(new_size));
 
 	new_ptr = malloc(new_size);
 	if (!new_ptr)
@@ -65,6 +71,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	old_ptr = ptr;
 
+	/*If new_size > old_size, the “added” memory should not be initialized*/
 	if (new_size > old_size)
 		size = old_size;
 	else

@@ -1,11 +1,6 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "main.h"
-
-void _puts(char *str);
-int _atoi(char *s);
-int is_valid_number(char *s);
-char *multiply_strings(char *s1, char *s2);
 
 /**
  * main - Entry point
@@ -22,27 +17,52 @@ char *multiply_strings(char *s1, char *s2);
 
 int main(int argc, char *argv[])
 {
-	char *res;
+	char *s1, *s2;
+	int s1Len, s2Len, totalLen, i, carry, digit1, digit2, *result, a = 0;
 
-	if (argc != 3 || !is_valid_number(argv[1]) || !is_valid_number(argv[2]))
-	{
-		_puts("ERROR");
+	s1 = argv[1], s2 = argv[2];
 
-		exit(98);
-	}
-
-	res = multiply_strings(argv[1], argv[2]);
-
-	if (res == NULL)
+	if (argc != 3 || !is_valid_number(s1) || !is_valid_number(s2))
 	{
 		_puts("ERROR");
 		exit(98);
 	}
 
-	_puts(res);
+	s1Len = _strlen(s1);
+	s2Len = _strlen(s2);
+	totalLen = s1Len + s2Len;
+	result = malloc(sizeof(int) * (totalLen + 1));
+	if (!result)
+		return (1);
+	for (i = 0; i <= s1Len + s2Len; i++)
+		result[i] = 0;
+	for (s1Len = s1Len - 1; s1Len >= 0; s1Len--)
+	{
+		digit1 = s1[s1Len] - '0';
+		carry = 0;
+		for (s2Len = _strlen(s2) - 1; s2Len >= 0; s2Len--)
+		{
+			digit2 = s2[s2Len] - '0';
+			carry += result[s1Len + s2Len + 1] + (digit1 * digit2);
+			result[s1Len + s2Len + 1] = carry % 10;
+			carry /= 10;
+		}
+		if (carry > 0)
+			result[s1Len + s2Len + 1] += carry;
+	}
+	for (i = 0; i < totalLen; i++)
+	{
+		if (result[i])
+			a = 1;
+		if (a)
+			_putchar(result[i] + '0');
+	}
 
-	free(res);
+	if (!a)
+		_putchar('0');
 
+	_putchar('\n');
+	free(result);
 	return (0);
 }
 
@@ -70,51 +90,6 @@ void _puts(char *str)
 	_putchar('\n');
 }
 
-#include "main.h"
-
-/**
- * _atoi - Entry point
- *
- *  * @s: pointer to a string
- *
- * Description: Function that convert a string to an integer.
- *
- * Prototype: int _atoi(char *s);
- *
- * Return: string converted to an integer
- *
- */
-
-int _atoi(char *s)
-{
-
-	int i;
-	int sign = 1;
-	unsigned int num = 0;
-	int digit_encounter = 0;
-
-	for (i = 0; s[i] != '\0'; i++)
-	{
-		if (s[i] == '-')
-			sign *= -1;
-
-		if (s[i] >= '0' && s[i] <= '9')
-		{
-			digit_encounter = 1;
-			num = num * 10 + (s[i] - '0');
-		}
-
-		else if (digit_encounter)
-			break;
-
-	}
-
-	if (sign < 0)
-		num = -num;
-
-	return (num);
-}
-
 /**
  * is_valid_number - Entry point
  *
@@ -138,10 +113,9 @@ int is_valid_number(char *s)
 
 	while (s[i])
 	{
-		if (i == 0 && s[i] == '-')
-			i++;
 		if (s[i] < '0' || s[i] > '9')
 			return (0);
+
 		i++;
 	}
 
@@ -149,86 +123,17 @@ int is_valid_number(char *s)
 }
 
 /**
- * multiply_strings - Entry point
+ * _strlen - returns the length of a string
+ * @s: string to evaluate
  *
- *  * @s1: string
- *  * @s2: string
- *
- * Description: Function that multiplies two string number
- *
- *
- * Return: Result of s1 * s2
- *
+ * Return: the length of the string
  */
-
-char *multiply_strings(char *s1, char *s2)
+int _strlen(char *s)
 {
-	int num1 = _atoi(s1);
-	int num2 = _atoi(s2);
-	int result = num1 * num2;
-	int result_length = 0, sign, i, left, right;
-	int temp_result = result;
-	char *result_str;
+	int i = 0;
 
-	if (temp_result == 0)
-		result_length = 1;
-	else
-	{
-		while (temp_result != 0)
-		{
-			result_length++;
-			temp_result /= 10;
-		}
-	}
+	while (s[i] != '\0')
+		i++;
 
-	sign = 1;
-
-	if (result < 0)
-	{
-		sign = -1;
-		result_length--;
-	}
-
-	result_str = malloc((result_length + 1) * sizeof(char));
-
-	if (result_str == NULL)
-		return (NULL);
-
-
-	i = 0;
-
-	if (sign == -1)
-		result_str[i++] = '-';
-
-
-	if (result == 0)
-		result_str[i] = '0';
-
-	else
-	{
-		while (result != 0)
-		{
-			int digit = result % 10;
-
-			result_str[i++] = ('0' + digit);
-			result /= 10;
-		}
-	}
-
-	result_str[i] = '\0';
-
-	left = sign == -1 ? 1 : 0;
-	right = i - 1;
-
-	while (left < right)
-	{
-		char temp = result_str[left];
-
-		result_str[left] = result_str[right];
-		result_str[right] = temp;
-		left++;
-		right--;
-	}
-
-	return (result_str);
+	return (i);
 }

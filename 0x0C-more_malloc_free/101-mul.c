@@ -17,8 +17,8 @@
 
 int main(int argc, char *argv[])
 {
-	char *s1 = argv[1], *s2 = argv[2];
-	int s1Len, s2Len, totalLen, i, carry, digit1, digit2, *result, a = 0;
+	char *s1 = argv[1], *s2 = argv[2], *result;
+	int s1Len, s2Len, totalLen, i, carry, digit1, digit2, a = 0;
 
 	if (argc != 3 || !is_valid_number(s1) || !is_valid_number(s2))
 	{
@@ -26,11 +26,11 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 	s1Len = _strlen(s1), s2Len = _strlen(s2), totalLen = s1Len + s2Len;
-	result = malloc(sizeof(int) * (totalLen + 1));
-	if (!result)
-		return (1);
-	for (i = 0; i <= s1Len + s2Len; i++)
-		result[i] = 0;
+
+	result = malloc(sizeof(int) * totalLen);
+
+	initValue(result, totalLen);
+
 	for (s1Len = s1Len - 1; s1Len >= 0; s1Len--)
 	{
 		digit1 = s1[s1Len] - '0';
@@ -129,4 +129,34 @@ int _strlen(char *s)
 		i++;
 
 	return (i);
+}
+
+
+/**
+ * initValue - Entry point
+ *
+ *  * @str: string
+ *  * @totalLen: the array type sizeof
+ *
+ * Description: Helper function
+ *
+ * Return: void
+ *
+ */
+
+void initValue(char *str, int totalLen)
+{
+	int i;
+
+	if (str == NULL)
+	{
+		_puts("ERROR");
+		exit(98);
+	}
+
+	for (i = 0; i < totalLen; i++)
+		str[i] = 0;
+
+
+	str[totalLen] = '\0';
 }

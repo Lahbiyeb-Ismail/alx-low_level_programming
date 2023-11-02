@@ -13,6 +13,7 @@ int _putchar(char c);
 void _puts(char *str);
 int _strlen(char *s);
 int is_valid_number(char *s);
+void initValue(char *str, int totalLen);
 
 
 #endif /* MAIN_H */

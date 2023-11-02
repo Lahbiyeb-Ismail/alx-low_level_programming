@@ -4,6 +4,7 @@
 
 void _puts(char *str);
 int _atoi(char *s);
+void print_int(unsigned long int n);
 
 /**
  * main - Entry point
@@ -34,7 +35,8 @@ int main(int argc, char *argv[])
 
 	res = num1 * num2;
 
-	printf("%d\n", res);
+	print_int(res);
+	_putchar('\n');
 
 	return (0);
 }
@@ -106,4 +108,31 @@ int _atoi(char *s)
 		num = -num;
 
 	return (num);
+}
+
+/**
+ * print_int - Entry point
+ *
+ *  * @n: int
+ *
+ * Description: Function print an integer
+ *
+ *
+ * Return: void
+ *
+ */
+
+void print_int(unsigned long int n)
+{
+	unsigned long int divisor = 1, i, res;
+
+	for (i = 0; n / divisor > 9; i++, divisor *= 10)
+		;
+
+	for (; divisor >= 1; n %= divisor, divisor /= 10)
+	{
+		res = n / divisor;
+		_putchar(res + '0');
+	}
+
 }

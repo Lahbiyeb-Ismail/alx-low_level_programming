@@ -21,7 +21,7 @@ void print_int(unsigned long int n);
 
 int main(int argc, char *argv[])
 {
-	int res, num1, num2;
+	long int res, num1, num2;
 
 	if (argc != 3)
 	{

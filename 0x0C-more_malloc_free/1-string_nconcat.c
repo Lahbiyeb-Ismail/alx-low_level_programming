@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 unsigned int str_len(char *str);
+char *is_str_null(char *str);
 
 /**
  * string_nconcat - Entry point
@@ -31,8 +32,8 @@ unsigned int str_len(char *str);
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int s1_len = str_len(s1);
-	unsigned int s2_len = str_len(s2);
+	unsigned int s1_len = str_len(is_str_null(s1));
+	unsigned int s2_len = str_len(is_str_null(s2));
 	unsigned int total_len = 0;
 	unsigned int i, j;
 
@@ -75,11 +76,28 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 unsigned int str_len(char *str)
 {
-	if (str == NULL)
-		str = "";
-
 	if (!*str)
 		return (0);
 
 	return (1 + str_len(str + 1));
+}
+
+/**
+ * is_str_null - Entry point
+ *
+ *  * @str: pointer to the string 1
+ *
+ * Description: Helper Function that check if a string == NULL
+ *
+ * Return: an empty string if the string == NULL
+ *
+ *
+ */
+
+char *is_str_null(char *str)
+{
+	if (str == NULL)
+		str = "";
+
+	return (str);
 }

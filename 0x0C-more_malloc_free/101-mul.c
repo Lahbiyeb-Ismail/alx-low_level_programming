@@ -17,20 +17,15 @@
 
 int main(int argc, char *argv[])
 {
-	char *s1, *s2;
+	char *s1 = argv[1], *s2 = argv[2];
 	int s1Len, s2Len, totalLen, i, carry, digit1, digit2, *result, a = 0;
-
-	s1 = argv[1], s2 = argv[2];
 
 	if (argc != 3 || !is_valid_number(s1) || !is_valid_number(s2))
 	{
 		_puts("ERROR");
 		exit(98);
 	}
-
-	s1Len = _strlen(s1);
-	s2Len = _strlen(s2);
-	totalLen = s1Len + s2Len;
+	s1Len = _strlen(s1), s2Len = _strlen(s2), totalLen = s1Len + s2Len;
 	result = malloc(sizeof(int) * (totalLen + 1));
 	if (!result)
 		return (1);
@@ -57,10 +52,8 @@ int main(int argc, char *argv[])
 		if (a)
 			_putchar(result[i] + '0');
 	}
-
 	if (!a)
 		_putchar('0');
-
 	_putchar('\n');
 	free(result);
 	return (0);

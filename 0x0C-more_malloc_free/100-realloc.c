@@ -74,7 +74,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	/*If new_size > old_size, the “added” memory should not be initialized*/
 	if (new_size > old_size)
 		size = old_size;
-	else
+	else if (new_size < old_size)
 		size = new_size;
 
 	for (i = 0; i < size; i++)

@@ -76,7 +76,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 unsigned int str_len(char *str)
 {
 	if (str == NULL)
-		return (0);
+		str = "";
 
 	if (!*str)
 		return (0);

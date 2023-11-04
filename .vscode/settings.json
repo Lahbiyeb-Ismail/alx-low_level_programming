@@ -3,6 +3,7 @@
 		"wildcmp"
 	],
 	"files.associations": {
-		"string.h": "c"
+		"string.h": "c",
+		"3-function_like_macro.h": "c"
 	}
 }

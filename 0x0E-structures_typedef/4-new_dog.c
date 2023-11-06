@@ -47,7 +47,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 		return (NULL);
 	}
 
-	newDog->age = age ? age : 0;
+	newDog->age = age;
 
 	return (newDog);
 }
@@ -78,15 +78,12 @@ char *_strcpy(char *str)
 	new = malloc(sizeof(char) * len + 1);
 
 	if (!new)
-	{
-		free(new);
 		return (NULL);
-	}
 
-	for (i = 0; i <= len; i++)
+	for (i = 0; i < len; i++)
 		new[i] = str[i];
 
-	new[len + 1] = '\0';
+	new[i] = '\0';
 
 	return (new);
 }

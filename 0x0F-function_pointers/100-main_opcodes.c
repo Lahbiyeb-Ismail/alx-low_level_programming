@@ -34,9 +34,15 @@ int main(int argc, char *argv[])
 	func_address = (char *)main;
 
 	for (i = 0; i < num_bytes; i++)
-		printf("%02hhx ", func_address[i]);
+	{
+		if (i == num_bytes - 1)
+		{
+			printf("%02hhx\n", func_address[i]);
+			break;
+		}
 
-	printf("\n");
+		printf("%02hhx ", func_address[i]);
+	}
 
 	return (0);
 }

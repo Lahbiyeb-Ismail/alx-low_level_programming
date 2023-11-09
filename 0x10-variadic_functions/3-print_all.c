@@ -56,6 +56,8 @@ void print_all(const char *const format, ...)
 
 				if (j != specifier_num - 1)
 					printf(", ");
+
+				break;
 			}
 			j++;
 		}

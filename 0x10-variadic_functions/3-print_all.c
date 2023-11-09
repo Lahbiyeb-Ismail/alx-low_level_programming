@@ -40,6 +40,7 @@ void print_all(const char *const format, ...)
 	};
 	va_list args;
 	int i, j, specifier_num = 4;
+	char *separator = "";
 
 	va_start(args, format);
 	i = 0;
@@ -52,11 +53,9 @@ void print_all(const char *const format, ...)
 		{
 			if (format[i] == ops[j].specifier[0])
 			{
+				printf("%s", separator);
+				separator = ", ";
 				ops[j].f(args);
-
-				if (j != specifier_num - 1)
-					printf(", ");
-
 				break;
 			}
 			j++;
@@ -64,8 +63,6 @@ void print_all(const char *const format, ...)
 
 		i++;
 	}
-
-
 
 	printf("\n");
 	va_end(args);

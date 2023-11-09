@@ -38,12 +38,11 @@ void print_all(const char *const format, ...)
 		 {"f", print_float},
 		 {"s", print_string},
 	};
-	int i, j, specifier_num = 4;
 	va_list args;
+	int i, j, specifier_num = 4;
 
 	va_start(args, format);
 	i = 0;
-
 
 	while (format && format[i])
 	{
@@ -66,8 +65,8 @@ void print_all(const char *const format, ...)
 
 
 
-	va_end(args);
 	printf("\n");
+	va_end(args);
 }
 
 /**
@@ -139,5 +138,5 @@ void print_string(va_list args)
 {
 	char *s = va_arg(args, char *);
 
-	printf("%s", s ? s : "(nil)");
+	printf("%s", (s) ? s : "(nil)");
 }

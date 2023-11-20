@@ -9,8 +9,6 @@
  *
  * Prototype: size_t print_listint(const listint_t *h);
  *
- * If str is NULL, print [0] (nil)
- *
  * Return: the number of nodes
  *
  */

@@ -17,12 +17,18 @@
 int pop_listint(listint_t **head)
 {
 	int n;
+	listint_t *currNode;
 
-	if (head == NULL)
+	currNode = *head;
+
+	if (currNode == NULL)
 		return (0);
 
-	n = (*head)->n;
-	(*head) = (*head)->next;
+
+	(*head) = currNode->next;
+	n = currNode->n;
+
+	free(currNode);
 
 	return (n);
 }

@@ -21,14 +21,14 @@ int sum_listint(listint_t *head)
 	listint_t *curr_node;
 
 	if (!head)
-		return (sum);
+		return (0);
 
 	curr_node = head;
 
-	while (curr_node->next)
+	while (curr_node)
 	{
-		curr_node = curr_node->next;
 		sum += curr_node->n;
+		curr_node = curr_node->next;
 	}
 
 	return (sum);

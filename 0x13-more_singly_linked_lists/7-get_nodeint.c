@@ -29,24 +29,28 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 	if (!head)
 		return (NULL);
 
-	curr_node = head;
-
-
-	while (i < index - 1)
+	if (index == 0)
+		found_node = head;
+	else
 	{
-		curr_node = curr_node->next;
-		i++;
+		curr_node = head;
+
+		while (i < index - 1)
+		{
+			curr_node = curr_node->next;
+			i++;
+		}
+
+		found_node = curr_node->next;
+
+		if (!found_node)
+		{
+			free(found_node);
+			return (NULL);
+		}
+
+		free(curr_node);
 	}
-
-	found_node = curr_node->next;
-
-	if (!found_node)
-	{
-		free(found_node);
-		return (NULL);
-	}
-
-	free(curr_node);
 
 	return (found_node);
 }

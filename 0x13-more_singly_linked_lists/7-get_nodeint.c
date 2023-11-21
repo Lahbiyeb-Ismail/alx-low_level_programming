@@ -30,27 +30,20 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 		return (NULL);
 
 	if (index == 0)
-		found_node = head;
-	else
+		return (head);
+
+	curr_node = head;
+
+	while (i < index - 1 && curr_node)
 	{
-		curr_node = head;
-
-		while (i < index - 1)
-		{
-			curr_node = curr_node->next;
-			i++;
-		}
-
-		found_node = curr_node->next;
-
-		if (!found_node)
-		{
-			free(found_node);
-			return (NULL);
-		}
-
-		free(curr_node);
+		curr_node = curr_node->next;
+		i++;
 	}
+
+	if (!curr_node || !curr_node->next)
+		return (NULL);
+
+	found_node = curr_node->next;
 
 	return (found_node);
 }

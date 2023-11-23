@@ -3,12 +3,12 @@
 /**
  * get_bit - Entry point
  *
- *  * @n: number to convert in binary
+ *  * @n: unsigned long number
  *  * @index: is the index, starting from 0 of the bit you want to get
  *
  * Description: Function that returns the value of a bit at a given index.
  *
- * Prototype: set_bit(unsigned long int *n, unsigned int index);
+ * Prototype: get_bit(unsigned long int n, unsigned int index);
  *
  * Return: The value of a bit at a given index.
  *

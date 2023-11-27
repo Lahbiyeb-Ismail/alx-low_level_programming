@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 		print_error_and_exit(98, "Error: Can't read from file %s\n", file_from);
 
 	fd_to =
-		open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR |
+		open(file_to, O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, S_IRUSR |
 			S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 
 	if (fd_to == -1)

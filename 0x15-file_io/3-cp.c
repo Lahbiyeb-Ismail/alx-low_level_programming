@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 	int fd_from, fd_to;
 
 	char buffer[BUFFER_SIZE];
-	ssize_t bytes_read, bytes_written;
+	ssize_t bytes_read = BUFFER_SIZE, bytes_written;
 
 	if (argc != 3)
 		print_error_and_exit(97, "%s\n", "Usage: cp file_from file_to");
@@ -58,17 +58,16 @@ int main(int argc, char *argv[])
 	if (fd_to == -1)
 		print_error_and_exit(99, "Error: Can't write to file %s\n", file_to);
 
-
-	while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+	while (bytes_read == BUFFER_SIZE)
 	{
+		bytes_read = read(fd_from, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+			print_error_and_exit(98, "Error: Can't read from file %s\n", file_from);
+
 		bytes_written = write(fd_to, buffer, bytes_read);
 		if (bytes_written == -1)
 			print_error_and_exit(99, "Error: Can't write to file %s\n", file_to);
 	}
-
-	if (bytes_read == -1)
-		print_error_and_exit(98, "Error: Can't read from file %s\n", file_from);
-
 	if (close(fd_from) == -1)
 		print_error_and_exit(100, "Error: Can't close fd %d\n", file_from);
 

@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 	ssize_t bytes_read, bytes_written;
 
 	if (argc != 3)
-		print_error_and_exit(97, "Usage: %s file_from file_to\n", argv[0]);
+		print_error_and_exit(97, "%s\n", "Usage: cp file_from file_to");
 
 	file_from = argv[1], file_to = argv[2];
 	fd_from = open(file_from, O_RDONLY);

@@ -1,6 +1,26 @@
 #include "main.h"
 
 /**
+ * free_buffer - Entry point
+ *
+ *  * @buffer: A pointer to a char's array
+ *  * @file_handler: is the number of letters it should read and print
+ *
+ * Description: Helper function that free the buffer memory and close
+ * the file_handler
+ *
+ * Return: 0
+ *
+ */
+
+int free_buffer(char *buffer, int file_handler)
+{
+	free(buffer);
+	close(file_handler);
+	return (0);
+}
+
+/**
  * read_textfile - Entry point
  *
  *  * @filename: A pointer to a text filename
@@ -18,28 +38,37 @@
  *
  */
 
-size_t read_textfile(const char *filename, size_t letters)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-	FILE *file_handler;
-	char c;
-	size_t char_count = 0;
+	int file_handler;
+	ssize_t read_count, write_count;
+	char *buffer;
 
 	if (!filename)
 		return (0);
 
-	file_handler = fopen(filename, "r");
+	file_handler = open(filename, O_RDONLY);
 
-	if (!file_handler)
+	if (file_handler == -1)
 		return (0);
 
-	while ((c = fgetc(file_handler)) != EOF)
-	{
-		if (char_count >= letters)
-			break;
+	buffer = malloc(sizeof(char) * letters);
 
-		putchar(c);
-		char_count++;
-	}
+	if (!buffer)
+		free_buffer(buffer, file_handler);
 
-	return (char_count);
+	read_count = read(file_handler, buffer, letters);
+	if (read_count == -1)
+		free_buffer(buffer, file_handler);
+
+	write_count = write(STDOUT_FILENO, buffer, read_count);
+	if (write_count == -1 || write_count != read_count)
+		free_buffer(buffer, file_handler);
+
+	free(buffer);
+	close(file_handler);
+
+	return (write_count);
 }
+
+

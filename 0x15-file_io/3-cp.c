@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 			S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 
 	if (fd_to == -1)
-		print_error_and_exit(99, "Error: Can't write to file %s\n", file_to);
+		print_error_and_exit(99, "Error: Can't write to %s\n", file_to);
 
 	while (bytes_read == BUFFER_SIZE)
 	{
@@ -66,12 +66,9 @@ int main(int argc, char *argv[])
 
 		bytes_written = write(fd_to, buffer, bytes_read);
 		if (bytes_written == -1)
-			print_error_and_exit(99, "Error: Can't write to file %s\n", file_to);
+			print_error_and_exit(99, "Error: Can't write to %s\n", file_to);
 	}
-	if (close(fd_from) == -1)
-		print_error_and_exit(100, "Error: Can't close fd %d\n", file_from);
-
-	if (close(fd_to) == -1)
+	if (close(fd_from) == -1 || close(fd_to) == -1)
 		print_error_and_exit(100, "Error: Can't close fd %d\n", file_from);
 
 	return (0);

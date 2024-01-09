@@ -1,6 +1,33 @@
 #include "lists.h"
 
 /**
+ * dlistint_len - Entry point
+ *
+ *  * @h: doubly-linked list head
+ *
+ * Description: Function that returns the number of elements in a
+ * linked dlistint_t list.
+ *
+ * Prototype: size_t dlistint_len(const dlistint_t *h);
+ *
+ * Return: the number of elements in a linked dlistint_t list.
+ *
+ */
+
+size_t dlistint_len(const dlistint_t *h)
+{
+	size_t len = 0;
+
+	while (h)
+	{
+		h = h->next;
+		len++;
+	}
+
+	return (len);
+}
+
+/**
  * delete_dnodeint_at_index - Entry point
  *
  *  * @head: doubly-linked list head
@@ -18,44 +45,33 @@
 
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	unsigned int len = 0;
-	dlistint_t *curr_node = NULL;
+	unsigned int len = dlistint_len(*head);
+	dlistint_t *curr_node = NULL, *tmp_node = NULL;
 
-	if (!*head || !head)
+	if (!*head || index >= len)
 		return (-1);
 
+	tmp_node = *head;
 
 	if (index == 0)
 	{
-		if ((*head)->next)
-			(*head)->next->prev = NULL;
-
 		*head = (*head)->next;
+		if (*head)
+			(*head)->prev = NULL;
 
-		free(curr_node);
+		free(tmp_node);
 		return (1);
 	}
 
-	curr_node = *head;
+	for (len = 0; len < index; len++)
+		tmp_node = tmp_node->next;
 
-	while (curr_node)
-	{
-		if (index - 1 == len)
-		{
-			if (curr_node->next)
-				curr_node->next->prev = curr_node->prev;
+	curr_node = tmp_node->prev;
+	curr_node->next = tmp_node->next;
 
-			if (curr_node->prev)
-				curr_node->prev->next = curr_node->next;
+	if (tmp_node->next)
+		tmp_node->next->prev = curr_node;
 
-			free(curr_node);
-			return (1);
-		}
-
-		curr_node = curr_node->next;
-		len++;
-	}
-
-	free(curr_node);
-	return (-1);
+	free(tmp_node);
+	return (1);
 }

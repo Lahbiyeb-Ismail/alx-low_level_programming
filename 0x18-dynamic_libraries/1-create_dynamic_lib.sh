@@ -1,8 +1,9 @@
 #!bin/bash
 
-# Compile each .c file into an object file
-gcc -c -Wall -Werror -fPIC *.c
+for file in *.c; do
+	gcc -c -fPIC "$file" -o "${file%.*}.o"
+done
 
-# Create the dynamic library
 gcc -shared -o liball.so *.o
 
+rm *.o

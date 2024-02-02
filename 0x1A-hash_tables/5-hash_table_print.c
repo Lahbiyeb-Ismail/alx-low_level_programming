@@ -21,9 +21,9 @@
  */
 void hash_table_print(const hash_table_t *ht)
 {
-	unsigned long int i;
 	hash_node_t *node;
-	char *comma = "";
+	unsigned long int i;
+	unsigned char comma_flag = 0;
 
 	/* Check if the hash table is NULL */
 	if (ht == NULL)
@@ -35,17 +35,30 @@ void hash_table_print(const hash_table_t *ht)
 	/* Iterate through each bucket in the hash table */
 	for (i = 0; i < ht->size; i++)
 	{
-		node = ht->array[i];
-
-		/* Traverse the linked list at the current bucket */
-		while (node)
+			/* Check if the current bucket is not empty */
+		if (ht->array[i] != NULL)
 		{
-			printf("%s'%s': '%s'", comma, node->key, node->value);
-			comma = ", ";
-			node = node->next;
+				/* Add a comma separator if it's not the first non-empty bucket */
+			if (comma_flag == 1)
+				printf(", ");
+
+			node = ht->array[i];
+
+			/* Traverse the linked list at the current bucket */
+			while (node != NULL)
+			{
+				printf("'%s': '%s'", node->key, node->value);
+				node = node->next;
+
+				/* Print a comma if there are more key-value pairs in the bucket */
+				if (node != NULL)
+					printf(", ");
+			}
+
+			/* Set the comma flag to indicate that a comma has been printed */
+			comma_flag = 1;
 		}
 	}
-
 	/* Print the closing curly brace for the entire hash table */
 	printf("}\n");
 }

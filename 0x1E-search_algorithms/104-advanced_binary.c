@@ -37,6 +37,9 @@ int binary_search_recursion(int *array, size_t low, size_t high, int value)
 
 	mid = low + (high - low) / 2;
 
+	if (array[low] == value)
+		return (low);
+	
 	if (array[mid] == value)
 		return (mid);
 

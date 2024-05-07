@@ -39,14 +39,17 @@ int binary_search_recursion(int *array, size_t low, size_t high, int value)
 
 	if (array[low] == value)
 		return (low);
-	
+
 	if (array[mid] == value)
 		return (mid);
 
 	if (array[mid] < value)
 		return (binary_search_recursion(array, mid + 1, high, value));
 
-	return (binary_search_recursion(array, low, mid - 1, value));
+	if (array[mid] >= value)
+		return (binary_search_recursion(array, low, mid - 1, value));
+
+	return (-1);
 }
 
 /**
